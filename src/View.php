@@ -11,7 +11,8 @@ class View
 
     public function render(): string
     {
-        $compiled = app(ViewCompiler::class)->compile($this->path);
+        $basePath = defined('NEXPH_BASE_PATH') ? NEXPH_BASE_PATH : getcwd();
+        $compiled = (new ViewCompiler($basePath . '/storage/nexph/views'))->compile($this->path);
         extract($this->data);
         ob_start();
         require $compiled;
