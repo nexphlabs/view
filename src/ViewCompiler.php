@@ -19,7 +19,7 @@ class ViewCompiler
         $hash = md5($path);
         $compiled = $this->cachePath . '/' . $hash . '.php';
 
-        if (!file_exists($compiled) || filemtime($path) > filemtime($compiled)) {
+        if (!file_exists($compiled) || (file_exists($path) && filemtime($path) > filemtime($compiled))) {
             $content = file_get_contents($path);
             $content = $this->compileDirectives($content);
             file_put_contents($compiled, $content);
