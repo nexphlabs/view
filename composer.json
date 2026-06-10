@@ -1,0 +1,25 @@
+{
+    "name": "nexph/view",
+    "description": "Lightweight view engine for Nexph",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nexph Labs",
+            "email": "foundation@nexph.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nexph\\View\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
