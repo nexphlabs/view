@@ -14,4 +14,10 @@ class ViewFactory
         $path = file_exists($base . '.nx.php') ? $base . '.nx.php' : $base . '.php';
         return new View($path, $data);
     }
+
+    public function raw(string $path): string
+    {
+        $file = $this->basePath . '/' . ltrim($path, '/');
+        return file_exists($file) ? file_get_contents($file) : '';
+    }
 }

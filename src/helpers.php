@@ -14,6 +14,19 @@ namespace Nexph\View {
         }
     }
 
+    if (!function_exists(__NAMESPACE__ . '\\raw')) {
+        function raw(string $path): string
+        {
+            static $factory = null;
+            if ($factory === null) {
+                $basePath = defined('NEXPH_BASE_PATH') ? NEXPH_BASE_PATH : getcwd();
+                $viewPath = defined('NEXPH_VIEW_PATH') ? NEXPH_VIEW_PATH : $basePath . '/resources/views';
+                $factory = new ViewFactory($viewPath);
+            }
+            return $factory->raw($path);
+        }
+    }
+
     if (!function_exists(__NAMESPACE__ . '\\nx')) {
         function nx(mixed $value): string
         {
@@ -53,6 +66,13 @@ namespace Nexph\View {
 }
 
 namespace {
+    if (!function_exists('raw')) {
+        function raw(string $path): string
+        {
+            return \Nexph\View\raw($path);
+        }
+    }
+
     if (!function_exists('nx')) {
         function nx(mixed $value): string
         {
